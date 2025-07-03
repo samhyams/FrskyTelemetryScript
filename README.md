@@ -8,8 +8,9 @@ This is the home of the Yaapu Telemetry project, an [ArduPilot](http://ardupilot
 *Note: it requires Ardupilot, i.e. it does not work with INAV, betaflight or any other flight stack different from Ardupilot*
 
 Supports:
- - [OpenTX](https://www.open-tx.org) 2.3.8 or later with Widget [version 2.0.0 or later](https://github.com/yaapu/FrskyTelemetryScript/archive/master.zip)
- - [EdgeTX](http://www.edgetx.org) version 2.7 or later with Widget [version 2.0.0 or later](https://github.com/yaapu/FrskyTelemetryScript/archive/master.zip)
+ - [OpenTX](https://www.open-tx.org) 2.3.8 or later use [this](https://github.com/yaapu/FrskyTelemetryScript/archive/refs/tags/etx-otx-lua52.zip)
+ - [EdgeTX](http://www.edgetx.org) up to version 2.10 use [this](https://github.com/yaapu/FrskyTelemetryScript/archive/refs/tags/etx-otx-lua52.zip)
+ - [EdgeTX](http://www.edgetx.org) version 2.11 or later use [latest](https://github.com/yaapu/FrskyTelemetryScript/archive/master.zip)
  - [Ethos](https://ethos.frsky-rc.com/) 1.4 or later, download widget [here](https://github.com/yaapu/FrskyTelemetryScript/tree/master/ETHOS) 
  - FRSKY S.Port (setup info [here](https://ardupilot.org/copter/docs/common-connecting-sport-fport.html))
  - TBS Crossfire (setup info [here](https://github.com/yaapu/FrskyTelemetryScript/wiki/Passthrough-over-CRSF-and-ExpressLRS))
