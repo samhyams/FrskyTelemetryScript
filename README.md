@@ -1,6 +1,7 @@
 
 # FORK SPECIFIC:
-This fork adds the ability to optionally display receiver RSSI as a raw dBm value in the main Yaapu script terlemetry display screen
+### These changes have only been implemented for the 320x480 colour LCD version!
+This fork adds the ability to optionally display receiver RSSI as a raw dBm value in the main Yaapu script telemetry display screen
 
 Changes:
 Yaapu Config now has an option for 'rssi unit':
