@@ -1,4 +1,15 @@
 
+# FORK SPECIFIC:
+This fork adds the ability to optionally display receiver RSSI as a raw dBm value in the main Yaapu script terlemetry display screen
+
+Changes:
+Yaapu Config now has an option for 'rssi unit':
+- 'ardu' displays RSSI in ArduPilot 0-100 format, exactly as the main Yaapu branch does
+- 'raw' displays the RSSI in the raw units as given by CRSF sensor '1RSS' (or '2RSS' if 1 is not available). For mLRS this is dBm.
+Updated the draw position of the RSSI information in the top bar as my other changes broke it for some reason
+Note a few other GUI elements have their positions broken. I've only noticed non-critical elements including the 'DISARMED' flash and the 'Initializing...' popup
+
+
 # Yaapu Telemetry Script and Widget
 
 ### please read the [wiki](https://github.com/yaapu/FrskyTelemetryScript/wiki) for more info
