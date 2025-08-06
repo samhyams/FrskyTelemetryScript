@@ -53,6 +53,7 @@ local conf = {
   maxHdopAlert = 2,
   enablePX4Modes = false,
   enableCRSF = false,
+  rssiUnit = true,
   -- layout and multiple screens support
   widgetLayout = 1,
   widgetLayoutFilename = "layout_def",
@@ -1542,10 +1543,10 @@ end
 local function drawRssiCRSF()
   lcd.setColor(CUSTOM_COLOR,utils.colors.white)
   -- RSSI
-  lcd.drawText(200 - 128, 18, "RTP:", 0+CUSTOM_COLOR+SMLSIZE)
-  lcd.drawText(200, 18, "RS:", 0+CUSTOM_COLOR+SMLSIZE)
-  lcd.drawText(200 - 128 + 30, 18, string.format("%d/%d/%d",getValue("RQly"),getValue("TQly"),getValue("TPWR")), 0+CUSTOM_COLOR+SMLSIZE)
-  lcd.drawText(200 + 22, 18, string.format("%d/%d", telemetry.rssiCRSF, getValue("RFMD")), 0+CUSTOM_COLOR+SMLSIZE)
+  lcd.drawText(290 - 128, 0, "RTP:", 0+CUSTOM_COLOR+SMLSIZE)
+  lcd.drawText(290, 0, "RS:", 0+CUSTOM_COLOR+SMLSIZE)
+  lcd.drawText(290 - 128 + 30, 0, string.format("%d/%d/%d",getValue("RQly"),getValue("TQly"),getValue("TPWR")), 0+CUSTOM_COLOR+SMLSIZE)
+  lcd.drawText(290 + 22, 0, string.format("%d/%d", telemetry.rssiCRSF, getValue("RFMD")), 0+CUSTOM_COLOR+SMLSIZE)
 end
 
 local function resetTelemetry()
@@ -2260,13 +2261,20 @@ end
 
 local function task2HzA(widget, now)
   if conf.enableCRSF then
-    -- apply same algo used by ardupilot to estimate a 0-100 rssi value
-    -- rssi = roundf((1.0f - (rssi_dbm - 50.0f) / 70.0f) * 255.0f);
-    local rssi_dbm = math.abs(getValue("1RSS"))
+    local rssi_dbm = getValue("1RSS")
     if getValue("ANT") ~= 0 then
-      rssi_dbm = math.abs(getValue("2RSS"))
+      rssi_dbm = getValue("2RSS")
     end
-    telemetry.rssiCRSF = math.min(100, math.floor(0.5 + ((1-(rssi_dbm - 50)/70)*100)))
+    -- check units required
+    if conf.rssiUnit then
+      -- if rssiUnit is set to "ardu" in the config
+      -- apply same algo used by ardupilot to estimate a 0-100 rssi value
+      -- rssi = roundf((1.0f - (rssi_dbm - 50.0f) / 70.0f) * 255.0f);
+      telemetry.rssiCRSF = math.min(100, math.floor(0.5 + ((1-(math.abs(rssi_dbm) - 50)/70)*100)))
+    else
+      -- otherwise provide the raw dbm rssi
+      telemetry.rssiCRSF = rssi_dbm
+    end
 
     if getValue("RFMD") == 1 then
       -- GPS

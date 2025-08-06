@@ -83,6 +83,7 @@ local menuItems = {
   {"rangefinder max:", "RM", 0, 0,10000," cm",0,10 },
   {"air/groundspeed unit:", "HSPD", 1, { "m/s", "km/h", "mph", "kn" }, { 1, 3.6, 2.23694, 1.94384} },
   {"vertical speed unit:", "VSPD", 1, { "m/s", "ft/s", "ft/min" }, { 1, 3.28084, 196.85} },
+  {"rssi unit:", "RSSU", 1, { "ardu", "raw" }, { true, false } },
   {"widget layout:", "WL", 1, { "default"}, { 1 } },
   {"main screen center panel:", "CPANE", 1, { "","","","","","","","","","" }, { 1, 2, 3, 4, 5, 6, 7, 8 ,9 ,10 } },
   {"main screen  right panel:", "RPANE", 1,  { "","","","","","","","","","" }, { 1, 2, 3, 4, 5, 6, 7, 8 ,9 ,10 } },
@@ -385,6 +386,7 @@ local function applyConfigValues(conf)
   conf.rangeFinderMax = getMenuItemByName(menuItems,"RM")
   conf.horSpeedMultiplier, conf.horSpeedLabel = getMenuItemByName(menuItems,"HSPD")
   conf.vertSpeedMultiplier, conf.vertSpeedLabel = getMenuItemByName(menuItems,"VSPD")
+  conf.rssiUnit = getMenuItemByName(menuItems,"RSSU")
   -- Layout configuration
   conf.widgetLayout = getMenuItemByName(menuItems,"WL")
   conf.widgetLayoutFilename = widgetLayoutFiles[conf.widgetLayout]
